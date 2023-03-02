@@ -81,6 +81,12 @@
                 <div class="mt-2" id="category-section">
                     <div class="d-flex align-items-center" id="category-list"></div>
                 </div>
+
+<!--
+
+                <div class="mt-2" id="duration-section">
+                    <div class="d-flex align-items-center" id="category-list"></div>
+                </div> -->
             </div>
             <!-- Display Adventures cards -->
             <div class="row" id="data"></div>
@@ -146,16 +152,33 @@
             // TODO: MODULE_FILTERS
             // 1. Change the DOM to show the selected duration filter. Use the provided input event
             // 2. Invoke saveFiltersToLocalStorage here
+            document.getElementById("data").textContent = "";
+            let duration = event.target.value;
+            document.getElementById("duration-select").selectedIndex = 0;
+            filters["duration"] = duration;
+            generateFilterPillsAndUpdateDOM(filters);
+            let filteredAdventures = filterFunction(adventures, filters);
+            addAdventureToDOM(filteredAdventures);
+            saveFiltersToLocalStorage(filters);
 
         }
-
         //executed when clear button is clicked on duration filter dropdown
         function clearDuration(event) {
             // TODO: MODULE_FILTERS
             // 1. Change the DOM to clear the Duration filter. Refer clearCategory() below
             // 2. Invoke saveFiltersToLocalStorage here
-
+            document.getElementById("data").textContent = "";
+            filters["duration"] = "";
+            let filteredAdventures = filterFunction(adventures, filters);
+            addAdventureToDOM(filteredAdventures);
+            saveFiltersToLocalStorage(filters);
+    
         }
+
+    
+
+        //executed when clear button is clicked on duration filter dropdown
+        
 
 
 
@@ -174,6 +197,8 @@
             generateFilterPillsAndUpdateDOM(filters);
             let filteredAdventures = filterFunction(adventures, filters);
             addAdventureToDOM(filteredAdventures);
+            saveFiltersToLocalStorage(filters);
+  
 
             // TODO: MODULE_FILTERS
             // 1. Invoke saveFiltersToLocalStorage here
@@ -187,6 +212,7 @@
             filters["category"] = [];
             let filteredAdventures = filterFunction(adventures, filters);
             addAdventureToDOM(filteredAdventures);
+            saveFiltersToLocalStorage(filters);
 
             // TODO: MODULE_FILTERS
             // 1. Invoke saveFiltersToLocalStorage here
