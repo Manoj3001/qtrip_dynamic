@@ -113,7 +113,7 @@ if(filters["duration"].length>0 && filters["category"].length>0)
 }
 else if(filters["category"].length>0)
 {
-   filterList=filterByCategory(list,filters["category"])
+   filterList=filterByCategory(list,filters["category"]);
 }
 else if(filters["duration"].length>0)
 {
